@@ -15,6 +15,11 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
                 c.HasKey(c => c.Id);
                 c.HasOne(c => c.EditOf).WithMany();
                 c.HasMany(c => c.Events).WithOne(e => e.Client);
+                c.Property(c => c.Name).HasMaxLength(255);
+                c.Property(c => c.AddressNumber).HasMaxLength(5);
+                c.Property(c => c.Postalcode).HasMaxLength(8);
+                c.Property(c => c.City).HasMaxLength(255);
+
             });
             modelBuilder.Entity<Event>(e =>
             {
@@ -23,6 +28,8 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
                 e.HasOne(e => e.EventType).WithMany().IsRequired();
                 e.HasMany(e => e.Models).WithMany(m => m.Events);
                 e.Property(e => e.Description).HasMaxLength(255);
+                e.Property(e => e.AddressNumber).HasMaxLength(5);
+                e.Property(e => e.Postalcode).HasMaxLength(8);
             });
             modelBuilder.Entity<EventType>(e =>
             {

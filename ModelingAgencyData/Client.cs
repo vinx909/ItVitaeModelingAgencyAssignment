@@ -6,7 +6,11 @@ namespace ModelingAgency.Data
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
-        //TODO: NAW-gegevens
+        //NAW-gegevens (Naam, adres, woonplaats)
+        public string Name { get; set; }
+        public int AddressNumber { get; set; }
+        public string Postalcode { get; set; }
+        public string City { get; set; }
         //TODO: logo
         public int KVKNumber { get; set; }
         public int BTWNumber { get; set; }

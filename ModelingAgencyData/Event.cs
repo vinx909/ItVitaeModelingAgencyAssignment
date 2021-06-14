@@ -8,7 +8,8 @@ namespace ModelingAgency.Data
         public int Id { get; set; }
         public Client Client { get; set; }
         public EventType EventType { get; set; }
-        //TODO: location
+        public int AddressNumber { get; set; }
+        public string Postalcode { get; set; }
         public DateTime StartTime { get; set; }
         public int Duration { get; set; }
         public string Description { get; set; }
