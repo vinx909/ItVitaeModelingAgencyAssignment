@@ -10,6 +10,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Client>().ToTable(nameof(Clients));
             modelBuilder.Entity<Client>(c =>
             {
                 c.HasKey(c => c.Id);
@@ -33,16 +34,27 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
             modelBuilder.Entity<Image>(i =>
             {
                 i.HasKey(i => i.Id);
-                i.HasOne(i => i.Model).WithMany(m => m.images).IsRequired();
+                i.HasOne(i => i.Model).WithMany(m => m.Images).IsRequired();
             });
+            modelBuilder.Entity<Model>().ToTable(nameof(Models));
             modelBuilder.Entity<Model>(m =>
             {
                 m.HasKey(m => m.Id);
-                m.HasMany(m => m.images).WithOne(i => i.Model);
+                m.HasMany(m => m.Images).WithOne(i => i.Model);
                 m.Property(m => m.EMailAdress).IsRequired().HasMaxLength(50);
                 m.Property(m => m.Description).HasMaxLength(255);
                 m.HasMany(m => m.Events).WithMany(e => e.Models);
             });
+            modelBuilder.Entity<Person>().ToTable(nameof(People));
+            modelBuilder.Entity<Person>(p =>
+            {
+                p.HasKey(p => p.Id);
+                p.HasOne(p => p.Role).WithMany();
+            });
+            modelBuilder.Entity<Role>(r =>
+           {
+               //r.HasKey(r=>r.)
+           });
         }
 
         public DbSet<Client> Clients { get; set; }
@@ -50,5 +62,6 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Model> Models { get; set; }
+        public DbSet<Person> People { get; set; }
     }
 }
