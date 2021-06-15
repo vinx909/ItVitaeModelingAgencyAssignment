@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ModelingAgency.Data.Service
 {
     public interface IClientData
     {
-        public Client GetAll();
+        public ICollection<Client> GetAll();
         public Client Get(int clientId);
         public Client Get(Func<Model, bool> searchQuiry);
         public void Create(Client clientToAdd);
