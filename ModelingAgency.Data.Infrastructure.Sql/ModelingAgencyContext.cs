@@ -49,6 +49,10 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
                 m.Property(m => m.EMailAdress).IsRequired().HasMaxLength(50);
                 m.Property(m => m.Description).HasMaxLength(255);
                 m.HasMany(m => m.Events).WithMany(e => e.Models);
+                m.Property(m => m.Name).HasMaxLength(255);
+                m.Property(m => m.AddressNumber).HasMaxLength(5);
+                m.Property(m => m.Postalcode).HasMaxLength(8);
+                m.Property(m => m.City).HasMaxLength(255);
             });
         }
 
