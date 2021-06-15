@@ -22,7 +22,7 @@ namespace ModelingAgency.Views.Controllers
             this.link = link;
         }
 
-        // TODO: Automapper gebruiken voor ClientViewModel
+        // TODO: ? Automapper gebruiken voor ClientViewModel 
         public ActionResult Index()
         {
             var model = clientData.GetAll();

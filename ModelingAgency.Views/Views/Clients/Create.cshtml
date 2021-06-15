@@ -1,5 +1,4 @@
-﻿@page
-@model ModelingAgency.Views.Views.Clients.CreateModel
+﻿@model Client
 
 @{
     ViewData["Title"] = "Create";
@@ -14,38 +13,38 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Client.Name" class="control-label"></label>
-                <input asp-for="Client.Name" class="form-control" />
-                <span asp-validation-for="Client.Name" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.AddressNumber" class="control-label"></label>
-                <input asp-for="Client.AddressNumber" class="form-control" />
-                <span asp-validation-for="Client.AddressNumber" class="text-danger"></span>
+                <label asp-for="AddressNumber" class="control-label"></label>
+                <input asp-for="AddressNumber" class="form-control" />
+                <span asp-validation-for="AddressNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.Postalcode" class="control-label"></label>
-                <input asp-for="Client.Postalcode" class="form-control" />
-                <span asp-validation-for="Client.Postalcode" class="text-danger"></span>
+                <label asp-for="Postalcode" class="control-label"></label>
+                <input asp-for="Postalcode" class="form-control" />
+                <span asp-validation-for="Postalcode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.City" class="control-label"></label>
-                <input asp-for="Client.City" class="form-control" />
-                <span asp-validation-for="Client.City" class="text-danger"></span>
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.KVKNumber" class="control-label"></label>
-                <input asp-for="Client.KVKNumber" class="form-control" />
-                <span asp-validation-for="Client.KVKNumber" class="text-danger"></span>
+                <label asp-for="KVKNumber" class="control-label"></label>
+                <input asp-for="KVKNumber" class="form-control" />
+                <span asp-validation-for="KVKNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.BTWNumber" class="control-label"></label>
-                <input asp-for="Client.BTWNumber" class="form-control" />
-                <span asp-validation-for="Client.BTWNumber" class="text-danger"></span>
+                <label asp-for="BTWNumber" class="control-label"></label>
+                <input asp-for="BTWNumber" class="form-control" />
+                <span asp-validation-for="BTWNumber" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Client.Aproved" /> @Html.DisplayNameFor(model => model.Client.Aproved)
+                    <input class="form-check-input" asp-for="Aproved" /> @Html.DisplayNameFor(model => model.Aproved)
                 </label>
             </div>
             <div class="form-group">
