@@ -1,0 +1,17 @@
+Image prop bij image class (via bytes? check google, logica ligt waarschijnlijk in controller of Context)
+
+Views afmaken van Client
+Views maken van Modellen
+Views maken van Events
+Views maken van EventTypes
+
+Controller afmaken van Client
+Controller maken Modellen
+Controller maken Events
+Controller maken EventTypes
+
+Vraagstukken:
+- Identity nu mee aan de slag, later of niet ?
+- Automapper gebruiken om model te gebruiken voor backend en viewmodel voor front-end ?
+- Datatables gebruiken ? https://datatables.net/index
+	Hierdoor kunnen we makkelijk dingen organiseren
