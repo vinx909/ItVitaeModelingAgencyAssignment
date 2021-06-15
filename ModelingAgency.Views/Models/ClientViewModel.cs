@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using ModelingAgency.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ModelingAgency.Data
+namespace ModelingAgency.Views.Models
 {
-    public class Client//TODO: probably inherite from a person class but related to identify framework
+    public class ClientViewModel
     {
-        public int Id { get; set; }
         //NAW-gegevens (Naam, adres, woonplaats)
         public string Name { get; set; }
-        public int AddressNumber { get; set; }
-        public string Postalcode { get; set; }
         public string City { get; set; }
         //TODO: logo
         public int KVKNumber { get; set; }

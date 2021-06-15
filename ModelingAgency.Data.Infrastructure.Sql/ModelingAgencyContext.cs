@@ -6,6 +6,10 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
 {
     public class ModelingAgencyContext : DbContext
     {
+        public ModelingAgencyContext(DbContextOptions<ModelingAgencyContext> options) : base(options)
+        {
+
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -27,6 +31,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
                 e.HasOne(e => e.Client).WithMany(c => c.Events).IsRequired();
                 e.HasOne(e => e.EventType).WithMany().IsRequired();
                 e.HasMany(e => e.Models).WithMany(m => m.Events);
+                e.Property(e => e.Name).IsRequired().HasMaxLength(50);
                 e.Property(e => e.Description).HasMaxLength(255);
                 e.Property(e => e.AddressNumber).HasMaxLength(5);
                 e.Property(e => e.Postalcode).HasMaxLength(8);

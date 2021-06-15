@@ -49,9 +49,14 @@ namespace ModelingAgency.Data.Service
             throw new NotImplementedException();
         }
 
-        public ICollection<Client> GetAll()
+        public IEnumerable<Client> GetAll()
         {
             return db.Clients.ToList();
+        }
+
+        public bool SaveChanges()
+        {
+            return db.SaveChanges() > 0;
         }
     }
 }

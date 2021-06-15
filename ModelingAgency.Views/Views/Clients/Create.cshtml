@@ -1,0 +1,64 @@
+﻿@page
+@model ModelingAgency.Views.Views.Clients.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Client.Name" class="control-label"></label>
+                <input asp-for="Client.Name" class="form-control" />
+                <span asp-validation-for="Client.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.AddressNumber" class="control-label"></label>
+                <input asp-for="Client.AddressNumber" class="form-control" />
+                <span asp-validation-for="Client.AddressNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Postalcode" class="control-label"></label>
+                <input asp-for="Client.Postalcode" class="form-control" />
+                <span asp-validation-for="Client.Postalcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.City" class="control-label"></label>
+                <input asp-for="Client.City" class="form-control" />
+                <span asp-validation-for="Client.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.KVKNumber" class="control-label"></label>
+                <input asp-for="Client.KVKNumber" class="form-control" />
+                <span asp-validation-for="Client.KVKNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.BTWNumber" class="control-label"></label>
+                <input asp-for="Client.BTWNumber" class="form-control" />
+                <span asp-validation-for="Client.BTWNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Client.Aproved" /> @Html.DisplayNameFor(model => model.Client.Aproved)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
