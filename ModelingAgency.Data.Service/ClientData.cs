@@ -49,7 +49,7 @@ namespace ModelingAgency.Data.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Client> GetAll()
+        public List<Client> GetAll()
         {
             return db.Clients.ToList();
         }

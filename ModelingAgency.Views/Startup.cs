@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ModelingAgency.Data.Service;
+using ModelingAgency.Data.Service.Extensions;
 using ModelingAgency.Data.Service.Infrastructure.Sql;
 using System;
 using System.Collections.Generic;
@@ -31,7 +33,12 @@ namespace ModelingAgency.Views
             {
                 options.UseSqlServer(Configuration.GetConnectionString("ModelingAgencyDB"));
             });
-            services.AddScoped<IClientData, ClientData>();
+
+            services.AddInfrastructure();
+            //services.Configure<RazorViewEngineOptions>(o =>
+            //{
+            //    o.ViewLocationFormats.Add("/Views/Clients/{0}" + RazorViewEngine.ViewExtension);
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
