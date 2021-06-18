@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelingAgency.Data.Service
 {
-    public interface IEventType
+    public interface IEventTypeData
     {
         public IEnumerable<EventType> GetAll();
         public EventType Get(int eventTypeId);

@@ -6,7 +6,7 @@ namespace ModelingAgency.Data.Service
     public interface IClientData
     {
         public IEnumerable<Client> GetAll();
-        public IEnumerable<Client> Get(Func<Model, bool> searchQuiry);
+        public IEnumerable<Client> GetFromSeachQuiry(Func<Client, bool> searchQuiry);
         public Client Get(int clientId);
         public void Create(Client clientToAdd);
         public void Edit(Client clientToUpdate);
