@@ -46,12 +46,13 @@ namespace ModelingAgency.Views.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.EventsListCreate = eventData.GetAll();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved,Events")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +75,8 @@ namespace ModelingAgency.Views.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.EventsListEdit = eventData.GetAll();
             return View(client);
         }
 

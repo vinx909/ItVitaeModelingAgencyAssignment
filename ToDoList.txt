@@ -1,14 +1,12 @@
 Image prop bij image class (via bytes? check google, logica ligt waarschijnlijk in controller of Context)
 
-Views afmaken van Client
-Views maken van Modellen
-Views maken van Events
-Views maken van EventTypes
+Check of routing/ relationship properties goed werken bij Client
 
-Controller afmaken van Client
-Controller maken Modellen
-Controller maken Events
-Controller maken EventTypes
+Routing/ relationship properties verwerken in de views bij:
+	- Event
+	- EventType
+	- Image
+	- Model
 
 Vraagstukken:
 - Identity nu mee aan de slag, later of niet ?

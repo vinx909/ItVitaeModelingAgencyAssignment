@@ -14,10 +14,12 @@ namespace ModelingAgency.Views.Controllers
     public class EventsController : Controller
     {
         private readonly IEventData repos;
+        private readonly IModelData modelData;
 
-        public EventsController(IEventData repos)
+        public EventsController(IEventData repos, IModelData modelData)
         {
             this.repos = repos;
+            this.modelData = modelData;
         }
 
         public IActionResult Index()
@@ -44,6 +46,7 @@ namespace ModelingAgency.Views.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.ModelsListCreate = modelData.GetAll();
             return View();
         }
 
@@ -72,6 +75,8 @@ namespace ModelingAgency.Views.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.ModelsListEdit = modelData.GetAll();
             return View(client);
         }
 
@@ -120,6 +125,7 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
+            ViewBag.ModelsListDelete = modelData.GetAll();
             return View(client);
         }
 
