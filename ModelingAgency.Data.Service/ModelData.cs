@@ -50,5 +50,10 @@ namespace ModelingAgency.Data.Service
         {
             return db.Models.ToList();
         }
+
+        public bool SaveChanges()
+        {
+            return db.SaveChanges() > 0;
+        }
     }
 }

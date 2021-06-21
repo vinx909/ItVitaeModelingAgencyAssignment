@@ -6,7 +6,6 @@ namespace ModelingAgency.Data
     public class Model//TODO: probably inherite from a person class but related to identify framework
     {
         public int Id { get; set; }
-        public int PersonId { get; set; }
         //NAW-gegevens (Naam, adres, woonplaats)
         public string Name { get; set; }
         public int AddressNumber { get; set; }

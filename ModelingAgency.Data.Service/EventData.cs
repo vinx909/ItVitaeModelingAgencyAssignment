@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModelingAgency.Data.Service
 {
-    public class EventData : IEventTypeData
+    public class EventData : IEventData
     {
         private readonly ModelingAgencyContext db;
 
@@ -45,6 +45,11 @@ namespace ModelingAgency.Data.Service
         public ICollection<Event> GetAll()
         {
             return db.Events.ToList();
+        }
+
+        public bool SaveChanges()
+        {
+            return db.SaveChanges() > 0;
         }
     }
 }

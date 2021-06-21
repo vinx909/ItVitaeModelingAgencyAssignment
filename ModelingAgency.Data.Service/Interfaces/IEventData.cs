@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelingAgency.Data.Service
 {
-    public interface IEventTypeData
+    public interface IEventData
     {
         public ICollection<Event> GetAll();
         public Event Get(int eventId);
@@ -14,5 +14,6 @@ namespace ModelingAgency.Data.Service
         public void Create(Event eventToAdd);
         public void Edit(Event eventToUpdate);
         public void Delete(int eventToDeleteId);
+        public bool SaveChanges();
     }
 }

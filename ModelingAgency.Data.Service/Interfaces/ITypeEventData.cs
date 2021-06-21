@@ -14,5 +14,6 @@ namespace ModelingAgency.Data.Service
         public void Create(EventType eventTypeToAdd);
         public void Edit(EventType eventTypeToUpdate);
         public void Delete(int eventTypeToDeleteId);
+        public bool SaveChanges();
     }
 }

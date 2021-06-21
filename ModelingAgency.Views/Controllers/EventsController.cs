@@ -11,15 +11,13 @@ using ModelingAgency.Data.Service.Infrastructure.Sql;
 
 namespace ModelingAgency.Views.Controllers
 {
-    public class ClientsController : Controller
+    public class EventsController : Controller
     {
-        private readonly IClientData repos;
-        private readonly IEventData eventData;
+        private readonly IEventData repos;
 
-        public ClientsController(IClientData repos, IEventData eventData)
+        public EventsController(IEventData repos)
         {
             this.repos = repos;
-            this.eventData = eventData;
         }
 
         public IActionResult Index()
@@ -51,15 +49,15 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,StartTime,Duration,Description")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                repos.Create(client);
+                repos.Create(@event);
                 repos.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(@event);
         }
 
         public IActionResult Edit(int id)
@@ -79,9 +77,9 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,StartTime,Duration,Description")] Event @event)
         {
-            if (id != client.Id)
+            if (id != @event.Id)
             {
                 return NotFound();
             }
@@ -90,12 +88,12 @@ namespace ModelingAgency.Views.Controllers
             {
                 try
                 {
-                    repos.Edit(client);
+                    repos.Edit(@event);
                     repos.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientExists(client.Id))
+                    if (!EventExists(@event.Id))
                     {
                         return NotFound();
                     }
@@ -106,7 +104,7 @@ namespace ModelingAgency.Views.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(@event);
         }
 
         public IActionResult Delete(int id)
@@ -129,16 +127,16 @@ namespace ModelingAgency.Views.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var client = repos.Get(id);
+            var @event = repos.Get(id);
             repos.Delete(id);
             repos.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientExists(int id)
+        private bool EventExists(int id)
         {
-            var client = repos.Get(id);
-            if (client != null)
+            var @event = repos.Get(id);
+            if (@event != null)
                 return true;
 
             return false;

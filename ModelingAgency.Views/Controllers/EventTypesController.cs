@@ -11,21 +11,19 @@ using ModelingAgency.Data.Service.Infrastructure.Sql;
 
 namespace ModelingAgency.Views.Controllers
 {
-    public class ClientsController : Controller
+    public class EventTypesController : Controller
     {
-        private readonly IClientData repos;
-        private readonly IEventData eventData;
+        private readonly ITypeEventData _repos;
 
-        public ClientsController(IClientData repos, IEventData eventData)
+        public EventTypesController(ITypeEventData repos)
         {
-            this.repos = repos;
-            this.eventData = eventData;
+            _repos = repos;
         }
-
+    
         public IActionResult Index()
         {
-            var model = repos.GetAll();
-            return View(model);
+            var eventType = _repos.GetAll();
+            return View(eventType);
         }
 
         public IActionResult Details(int id)
@@ -35,31 +33,26 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
-            var client = repos.Get(id);
-            if (client == null)
+            var eventType = _repos.Get(id);
+            if (eventType == null)
             {
                 return NotFound();
             }
 
-            return View(client);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
+            return View(eventType);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Create([Bind("Id,Name,Description")] EventType eventType)
         {
             if (ModelState.IsValid)
             {
-                repos.Create(client);
-                repos.SaveChanges();
+                _repos.Create(eventType);
+                _repos.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(eventType);
         }
 
         public IActionResult Edit(int id)
@@ -69,19 +62,19 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
-            var client = repos.Get(id);
-            if (client == null)
+            var eventType = _repos.Get(id);
+            if (eventType == null)
             {
                 return NotFound();
             }
-            return View(client);
+            return View(eventType);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Edit(int id, [Bind("Id,Name,Description")] EventType eventType)
         {
-            if (id != client.Id)
+            if (id != eventType.Id)
             {
                 return NotFound();
             }
@@ -90,12 +83,12 @@ namespace ModelingAgency.Views.Controllers
             {
                 try
                 {
-                    repos.Edit(client);
-                    repos.SaveChanges();
+                    _repos.Edit(eventType);
+                    _repos.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientExists(client.Id))
+                    if (!EventTypeExists(eventType.Id))
                     {
                         return NotFound();
                     }
@@ -106,7 +99,7 @@ namespace ModelingAgency.Views.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(eventType);
         }
 
         public IActionResult Delete(int id)
@@ -116,29 +109,28 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
-            var client = repos.Get(id);
-            if (client == null)
+            var eventType = _repos.Get(id);
+            if (eventType == null)
             {
                 return NotFound();
             }
 
-            return View(client);
+            return View(eventType);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var client = repos.Get(id);
-            repos.Delete(id);
-            repos.SaveChanges();
+            var eventType = _repos.Get(id);
+            _repos.Delete(id);
+            _repos.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
-
-        private bool ClientExists(int id)
+        private bool EventTypeExists(int id)
         {
-            var client = repos.Get(id);
-            if (client != null)
+            var eventType = _repos.Get(id);
+            if (eventType != null)
                 return true;
 
             return false;

@@ -46,5 +46,10 @@ namespace ModelingAgency.Data.Service
         {
             return db.EventTypes.ToList();
         }
+
+        public bool SaveChanges()
+        {
+            return db.SaveChanges() > 0;
+        }
     }
 }

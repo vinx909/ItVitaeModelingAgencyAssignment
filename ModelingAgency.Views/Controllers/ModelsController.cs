@@ -11,20 +11,18 @@ using ModelingAgency.Data.Service.Infrastructure.Sql;
 
 namespace ModelingAgency.Views.Controllers
 {
-    public class ClientsController : Controller
+    public class ModelsController : Controller
     {
-        private readonly IClientData repos;
-        private readonly IEventData eventData;
+        private readonly IModelData _repos;
 
-        public ClientsController(IClientData repos, IEventData eventData)
+        public ModelsController(IModelData repos)
         {
-            this.repos = repos;
-            this.eventData = eventData;
+            _repos = repos;
         }
 
         public IActionResult Index()
         {
-            var model = repos.GetAll();
+            var model = _repos.GetAll();
             return View(model);
         }
 
@@ -35,31 +33,26 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
-            var client = repos.Get(id);
-            if (client == null)
+            var model = _repos.Get(id);
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(client);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,Age,HairColor,EyeColor,Length,ClothingSize,TelephoneNumber,EMailAdress,Description,Aproved")] Model model)
         {
             if (ModelState.IsValid)
             {
-                repos.Create(client);
-                repos.SaveChanges();
+                _repos.Create(model);
+                _repos.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(model);
         }
 
         public IActionResult Edit(int id)
@@ -69,19 +62,19 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
-            var client = repos.Get(id);
-            if (client == null)
+            var model = _repos.Get(id);
+            if (model == null)
             {
                 return NotFound();
             }
-            return View(client);
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,City,Age,HairColor,EyeColor,Length,ClothingSize,TelephoneNumber,EMailAdress,Description,Aproved")] Model model)
         {
-            if (id != client.Id)
+            if (id != model.Id)
             {
                 return NotFound();
             }
@@ -90,12 +83,12 @@ namespace ModelingAgency.Views.Controllers
             {
                 try
                 {
-                    repos.Edit(client);
-                    repos.SaveChanges();
+                    _repos.Edit(model);
+                    _repos.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientExists(client.Id))
+                    if (!ModelExists(model.Id))
                     {
                         return NotFound();
                     }
@@ -106,7 +99,7 @@ namespace ModelingAgency.Views.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(model);
         }
 
         public IActionResult Delete(int id)
@@ -116,29 +109,30 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
-            var client = repos.Get(id);
-            if (client == null)
+            var model = _repos.Get(id);
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(client);
+            return View(model);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var client = repos.Get(id);
-            repos.Delete(id);
-            repos.SaveChanges();
+            var model = _repos.Get(id);
+            _repos.Delete(id);
+            _repos.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientExists(int id)
+        private bool ModelExists(int id)
         {
-            var client = repos.Get(id);
-            if (client != null)
+            var model = _repos.Get(id);
+            if (model != null)
                 return true;
 
             return false;

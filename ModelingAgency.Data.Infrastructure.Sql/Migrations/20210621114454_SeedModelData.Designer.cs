@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModelingAgency.Data.Service.Infrastructure.Sql;
 
 namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
 {
     [DbContext(typeof(ModelingAgencyContext))]
-    partial class ModelingAgencyContextModelSnapshot : ModelSnapshot
+    [Migration("20210621114454_SeedModelData")]
+    partial class SeedModelData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,7 +166,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                             Duration = 3,
                             Name = "Auto show",
                             Postalcode = "3568 GG",
-                            StartTime = new DateTime(2021, 6, 23, 14, 14, 10, 530, DateTimeKind.Local).AddTicks(9743)
+                            StartTime = new DateTime(2021, 6, 23, 13, 44, 53, 946, DateTimeKind.Local).AddTicks(3157)
                         },
                         new
                         {
@@ -174,7 +176,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                             Duration = 3,
                             Name = "Anime con",
                             Postalcode = "4201 BR",
-                            StartTime = new DateTime(2021, 6, 26, 14, 14, 10, 533, DateTimeKind.Local).AddTicks(3731)
+                            StartTime = new DateTime(2021, 6, 26, 13, 44, 53, 948, DateTimeKind.Local).AddTicks(9128)
                         },
                         new
                         {
@@ -184,7 +186,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                             Duration = 1,
                             Name = "Verzamelbeurs",
                             Postalcode = "6734 TY",
-                            StartTime = new DateTime(2021, 6, 28, 14, 14, 10, 533, DateTimeKind.Local).AddTicks(3762)
+                            StartTime = new DateTime(2021, 6, 28, 13, 44, 53, 948, DateTimeKind.Local).AddTicks(9163)
                         });
                 });
 
@@ -207,20 +209,6 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EventTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Evenement waarbij nieuwe producten worden gepresenteerd",
-                            Name = "Beurs"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Evenement waarbij entertainment rondom een bepaald onderwerp centraal staat",
-                            Name = "Conventie"
-                        });
                 });
 
             modelBuilder.Entity("ModelingAgency.Data.Image", b =>

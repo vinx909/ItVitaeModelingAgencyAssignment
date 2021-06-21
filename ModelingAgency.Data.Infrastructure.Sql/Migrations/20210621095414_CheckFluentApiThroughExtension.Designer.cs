@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModelingAgency.Data.Service.Infrastructure.Sql;
 
 namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
 {
     [DbContext(typeof(ModelingAgencyContext))]
-    partial class ModelingAgencyContextModelSnapshot : ModelSnapshot
+    [Migration("20210621095414_CheckFluentApiThroughExtension")]
+    partial class CheckFluentApiThroughExtension
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,7 +166,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                             Duration = 3,
                             Name = "Auto show",
                             Postalcode = "3568 GG",
-                            StartTime = new DateTime(2021, 6, 23, 14, 14, 10, 530, DateTimeKind.Local).AddTicks(9743)
+                            StartTime = new DateTime(2021, 6, 23, 11, 54, 13, 752, DateTimeKind.Local).AddTicks(7775)
                         },
                         new
                         {
@@ -174,7 +176,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                             Duration = 3,
                             Name = "Anime con",
                             Postalcode = "4201 BR",
-                            StartTime = new DateTime(2021, 6, 26, 14, 14, 10, 533, DateTimeKind.Local).AddTicks(3731)
+                            StartTime = new DateTime(2021, 6, 26, 11, 54, 13, 755, DateTimeKind.Local).AddTicks(7317)
                         },
                         new
                         {
@@ -184,7 +186,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                             Duration = 1,
                             Name = "Verzamelbeurs",
                             Postalcode = "6734 TY",
-                            StartTime = new DateTime(2021, 6, 28, 14, 14, 10, 533, DateTimeKind.Local).AddTicks(3762)
+                            StartTime = new DateTime(2021, 6, 28, 11, 54, 13, 755, DateTimeKind.Local).AddTicks(7413)
                         });
                 });
 
@@ -207,20 +209,6 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EventTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Evenement waarbij nieuwe producten worden gepresenteerd",
-                            Name = "Beurs"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Evenement waarbij entertainment rondom een bepaald onderwerp centraal staat",
-                            Name = "Conventie"
-                        });
                 });
 
             modelBuilder.Entity("ModelingAgency.Data.Image", b =>
@@ -289,6 +277,9 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Postalcode")
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
@@ -301,59 +292,6 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql.Migrations
                     b.HasIndex("EditOfId");
 
                     b.ToTable("Models");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AddressNumber = 12,
-                            Age = (short)22,
-                            Aproved = false,
-                            City = "Amsterdam",
-                            ClothingSize = 38,
-                            Description = "Veel energie",
-                            EMailAdress = "LotteKraamer@gmail.com",
-                            EyeColor = "Blauw-groen",
-                            HairColor = "Blond",
-                            Length = 178,
-                            Name = "Lotte",
-                            Postalcode = "4623 GH",
-                            TelephoneNumber = 612345678
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AddressNumber = 8,
-                            Age = (short)24,
-                            Aproved = false,
-                            City = "Groningen",
-                            ClothingSize = 40,
-                            Description = "Rustig",
-                            EMailAdress = "AnneVanBeekeren@gmail.com",
-                            EyeColor = "Blauw",
-                            HairColor = "Licht-Bruin",
-                            Length = 176,
-                            Name = "Anne",
-                            Postalcode = "7856 TH",
-                            TelephoneNumber = 612341234
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AddressNumber = 3,
-                            Age = (short)21,
-                            Aproved = false,
-                            City = "Amersfoort",
-                            ClothingSize = 36,
-                            Description = "Ingetogen",
-                            EMailAdress = "EmmaVanZuiden@gmail.com",
-                            EyeColor = "Bruin",
-                            HairColor = "Zwart",
-                            Length = 174,
-                            Name = "Emma",
-                            Postalcode = "5674 UH",
-                            TelephoneNumber = 612344567
-                        });
                 });
 
             modelBuilder.Entity("EventModel", b =>

@@ -14,5 +14,6 @@ namespace ModelingAgency.Data.Service
         public void Create(Model modelToAdd);
         public void Edit(Model modelToUpdate);
         public void Delete(int modelToDeleteId);
+        public bool SaveChanges();
     }
 }
