@@ -1,8 +1,10 @@
 ﻿namespace ModelingAgency.Data
 {
-    public class Role
+    public enum Role
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        Administrator,
+        Model,
+        Client,
+        Visitor
     }
 }

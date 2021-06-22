@@ -6,6 +6,13 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
 {
     public class ModelingAgencyContext : DbContext
     {
+        private const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ItvitaeModelingAgency;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer(connectionString);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -13,7 +20,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
             modelBuilder.Entity<Client>().ToTable(nameof(Clients));
             modelBuilder.Entity<Client>(c =>
             {
-                c.HasKey(c => c.Id);
+                //c.HasKey(c => c.Id);
                 c.HasOne(c => c.EditOf).WithMany();
                 c.HasMany(c => c.Events).WithOne(e => e.Client);
             });
@@ -39,7 +46,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
             modelBuilder.Entity<Model>().ToTable(nameof(Models));
             modelBuilder.Entity<Model>(m =>
             {
-                m.HasKey(m => m.Id);
+                //m.HasKey(m => m.Id);
                 m.HasMany(m => m.Images).WithOne(i => i.Model);
                 m.Property(m => m.EMailAdress).IsRequired().HasMaxLength(50);
                 m.Property(m => m.Description).HasMaxLength(255);
@@ -49,12 +56,9 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
             modelBuilder.Entity<Person>(p =>
             {
                 p.HasKey(p => p.Id);
-                p.HasOne(p => p.Role).WithMany();
+                p.Property(p => p.Name).HasMaxLength(50).IsRequired();
+                p.HasIndex(p => p.Name).IsUnique();
             });
-            modelBuilder.Entity<Role>(r =>
-           {
-               //r.HasKey(r=>r.)
-           });
         }
 
         public DbSet<Client> Clients { get; set; }
