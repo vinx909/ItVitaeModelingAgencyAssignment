@@ -60,8 +60,28 @@
                 </dd>
             }
         }
+        @if (Model.Client != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.Name)
+            </dd>
+
+        }
+        @if (Model.EventType != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EventType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EventType.Name)
+            </dd>
+
+        }
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

@@ -15,11 +15,15 @@ namespace ModelingAgency.Views.Controllers
     {
         private readonly IEventData repos;
         private readonly IModelData modelData;
+        private readonly IClientData clientData;
+        private readonly IEventData eventData;
 
-        public EventsController(IEventData repos, IModelData modelData)
+        public EventsController(IEventData repos, IModelData modelData, IClientData clientData, IEventData eventData)
         {
             this.repos = repos;
             this.modelData = modelData;
+            this.clientData = clientData;
+            this.eventData = eventData;
         }
 
         public IActionResult Index()
@@ -47,6 +51,8 @@ namespace ModelingAgency.Views.Controllers
         public IActionResult Create()
         {
             ViewBag.ModelsListCreate = modelData.GetAll();
+            ViewBag.ClientsListCreate = clientData.GetAll();
+            ViewBag.EventTypesListCreate = eventData.GetAll();
             return View();
         }
 
@@ -77,6 +83,8 @@ namespace ModelingAgency.Views.Controllers
             }
 
             ViewBag.ModelsListEdit = modelData.GetAll();
+            ViewBag.ClientsListEdit = clientData.GetAll();
+            ViewBag.EventTypesListEdit = eventData.GetAll();
             return View(client);
         }
 
@@ -125,7 +133,6 @@ namespace ModelingAgency.Views.Controllers
                 return NotFound();
             }
 
-            ViewBag.ModelsListDelete = modelData.GetAll();
             return View(client);
         }
 

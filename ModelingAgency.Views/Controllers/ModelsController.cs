@@ -14,10 +14,12 @@ namespace ModelingAgency.Views.Controllers
     public class ModelsController : Controller
     {
         private readonly IModelData _repos;
+        private readonly IEventData _eventData;
 
-        public ModelsController(IModelData repos)
+        public ModelsController(IModelData repos, IEventData eventData)
         {
             _repos = repos;
+            _eventData = eventData;
         }
 
         public IActionResult Index()
@@ -40,6 +42,12 @@ namespace ModelingAgency.Views.Controllers
             }
 
             return View(model);
+        }
+
+        public IActionResult Create()
+        {
+            ViewBag.EventsListCreate = _eventData.GetAll();
+            return View();
         }
 
         [HttpPost]
@@ -67,6 +75,8 @@ namespace ModelingAgency.Views.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.EventsListEdit = _eventData.GetAll();
             return View(model);
         }
 
