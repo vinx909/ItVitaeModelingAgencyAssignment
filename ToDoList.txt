@@ -1,0 +1,15 @@
+Image prop bij image class (via bytes? check google, logica ligt waarschijnlijk in controller of Context)
+
+Check of routing/ relationship properties goed werken bij Client
+
+Routing/ relationship properties verwerken in de views bij:
+	- Event
+	- EventType
+	- Image
+	- Model
+
+Vraagstukken:
+- Identity nu mee aan de slag, later of niet ?
+- Automapper gebruiken om model te gebruiken voor backend en viewmodel voor front-end ?
+- Datatables gebruiken ? https://datatables.net/index
+	Hierdoor kunnen we makkelijk dingen organiseren
