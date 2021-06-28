@@ -46,7 +46,7 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved,Events")] Client client)
+        public IActionResult Create([Bind("Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved,Events")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
+        public IActionResult Edit(int id, [Bind("Name,AddressNumber,Postalcode,City,KVKNumber,BTWNumber,Aproved")] Client client)
         {
             if (id != client.Id)
             {

@@ -52,7 +52,7 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,City,Age,HairColor,EyeColor,Length,ClothingSize,TelephoneNumber,EMailAdress,Description,Aproved")] Model model)
+        public IActionResult Create([Bind("Name,AddressNumber,Postalcode,City,Age,HairColor,EyeColor,Length,ClothingSize,TelephoneNumber,EMailAdress,Description,Aproved")] Model model)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,City,Age,HairColor,EyeColor,Length,ClothingSize,TelephoneNumber,EMailAdress,Description,Aproved")] Model model)
+        public IActionResult Edit(int id, [Bind("Name,AddressNumber,Postalcode,City,Age,HairColor,EyeColor,Length,ClothingSize,TelephoneNumber,EMailAdress,Description,Aproved")] Model model)
         {
             if (id != model.Id)
             {

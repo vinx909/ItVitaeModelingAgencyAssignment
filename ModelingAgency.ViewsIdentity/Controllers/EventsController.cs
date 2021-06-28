@@ -58,7 +58,7 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,AddressNumber,Postalcode,StartTime,Duration,Description")] Event @event)
+        public IActionResult Create([Bind("Name,AddressNumber,Postalcode,StartTime,Duration,Description")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace ModelingAgency.Views.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,AddressNumber,Postalcode,StartTime,Duration,Description")] Event @event)
+        public IActionResult Edit(int id, [Bind("Name,AddressNumber,Postalcode,StartTime,Duration,Description")] Event @event)
         {
             if (id != @event.Id)
             {

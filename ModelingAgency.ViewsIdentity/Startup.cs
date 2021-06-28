@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ModelingAgency.Data.Service.Extensions;
 using ModelingAgency.Data.Service.Infrastructure.Sql;
+using ModelingAgency.Data.Service.Infrastructure.Sql.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace ModelingAgency.ViewsIdentity
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider prov /*, RolesConfiguration rolesConfig*/)
         {
             if (env.IsDevelopment())
             {
@@ -69,6 +70,8 @@ namespace ModelingAgency.ViewsIdentity
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            //rolesConfig.CreateRoles(prov).Wait();
         }
     }
 }
