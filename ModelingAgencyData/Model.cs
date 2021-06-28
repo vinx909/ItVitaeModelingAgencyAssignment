@@ -6,6 +6,9 @@ namespace ModelingAgency.Data
     public class Model : Person
     {
         //TODO: NAW-gegevens
+        public int AddressNumber { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
         public Int16 Age { get; set; }
         //lichaams maten
         public ICollection<Image> Images { get; set; }

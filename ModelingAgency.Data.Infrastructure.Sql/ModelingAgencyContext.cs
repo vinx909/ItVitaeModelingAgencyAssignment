@@ -20,9 +20,11 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
             modelBuilder.Entity<Client>().ToTable(nameof(Clients));
             modelBuilder.Entity<Client>(c =>
             {
-                //c.HasKey(c => c.Id);
-                c.HasOne(c => c.EditOf).WithMany();
+                c.HasOne(c => c.EditOf).WithOne();
                 c.HasMany(c => c.Events).WithOne(e => e.Client);
+                c.Property(c => c.AddressNumber).HasMaxLength(6);
+                c.Property(c => c.PostalCode).HasMaxLength(8);
+                c.Property(c => c.City).HasMaxLength(50);
             });
             modelBuilder.Entity<Event>(e =>
             {
@@ -47,6 +49,10 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
             modelBuilder.Entity<Model>(m =>
             {
                 //m.HasKey(m => m.Id);
+                m.Property(m => m.AddressNumber).HasMaxLength(6);
+                m.Property(m => m.PostalCode).HasMaxLength(8);
+                m.Property(m => m.City).HasMaxLength(50);
+                m.Property(m => m.Age).HasMaxLength(3);
                 m.HasMany(m => m.Images).WithOne(i => i.Model);
                 m.Property(m => m.EMailAdress).IsRequired().HasMaxLength(50);
                 m.Property(m => m.Description).HasMaxLength(255);
