@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ModelingAgency.Data.Service;
+using ModelingAgency.Data.Service.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

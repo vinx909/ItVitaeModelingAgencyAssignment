@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ModelingAgency.Data.Service.Infrastructure.Sql.Extensions;
 
 namespace ModelingAgency.Data.Service.Infrastructure.Sql
 {
@@ -16,15 +16,7 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.SetEntityAttributes();
-
-            modelBuilder.SeedClientData();
-
-            modelBuilder.SeedEventData();
-
-            modelBuilder.SeedModelData();
-
-            modelBuilder.SeedEventTypeData();
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public DbSet<Client> Clients { get; set; }

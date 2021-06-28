@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelingAgency.Data.Service
+namespace ModelingAgency.Data.Service.Repositories
 {
     public class EventData : IEventData
     {

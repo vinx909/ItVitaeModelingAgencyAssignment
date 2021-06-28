@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ModelingAgency.Data;
 using ModelingAgency.Data.Service;
-using ModelingAgency.Data.Service.Infrastructure.Sql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ModelingAgency.Views.Controllers
 {
