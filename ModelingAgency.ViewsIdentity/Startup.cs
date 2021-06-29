@@ -33,16 +33,19 @@ namespace ModelingAgency.ViewsIdentity
                 options.UseSqlServer(Configuration.GetConnectionString("ModelingAgencyDB")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ModelingAgencyContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ModelingAgencyContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
 
             services.AddInfrastructure();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider prov /*, RolesConfiguration rolesConfig*/)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -70,8 +73,6 @@ namespace ModelingAgency.ViewsIdentity
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-
-            //rolesConfig.CreateRoles(prov).Wait();
         }
     }
 }

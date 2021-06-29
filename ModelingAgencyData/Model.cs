@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ModelingAgency.Data
 {
-    public class Model//TODO: probably inherite from a person class but related to identify framework
+    public class Model
     {
         public int Id { get; set; }
         //NAW-gegevens (Naam, adres, woonplaats)
@@ -12,7 +12,7 @@ namespace ModelingAgency.Data
         public string Postalcode { get; set; }
         public string City { get; set; }
         public Int16 Age { get; set; }
-        //lichaams maten
+
         public string HairColor { get; set; }
         public string EyeColor { get; set; }
         public int Length { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,47 +9,26 @@ using System.Threading.Tasks;
 
 namespace ModelingAgency.Data.Service.Infrastructure.Sql.Configurations
 {
-    public class RolesConfiguration
+    public class RolesConfiguration : IEntityTypeConfiguration<IdentityRole>
     {
-        private readonly ModelingAgencyContext context;
-
-        public RolesConfiguration(ModelingAgencyContext context)
+        public void Configure(EntityTypeBuilder<IdentityRole> builder)
         {
-            this.context = context;
-        }
-        public async Task CreateRoles(IServiceProvider serviceProvider)
-        {
-            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
-            string[] roleNames = { "Admin", "Client", "Model" };
-
-            foreach (var roleName in roleNames)
-            {
-                if (!context.Roles.Any(r => r.Name == roleName))
+            builder.HasData(
+                new IdentityRole
                 {
-                    await RoleManager.CreateAsync(new IdentityRole { Name = roleName, NormalizedName = roleName.ToLower() });
-                }
-            }
-
-            var adminUser = new IdentityUser
-            {
-                UserName = "Administrator",
-                Email = "Admin@gmail.com",
-                EmailConfirmed = true,
-                LockoutEnabled = false
-            };
-
-            if(!context.Users.Any(u => u.UserName == adminUser.UserName))
-            {
-                var password = new PasswordHasher<IdentityUser>();
-                var hashed = password.HashPassword(adminUser, "Wachtwoord456!");
-                adminUser.PasswordHash = hashed;
-
-                await UserManager.CreateAsync(adminUser);
-                await UserManager.AddToRoleAsync(adminUser, "admin");
-            }
-
-            await context.SaveChangesAsync();
+                    Name = "Client",
+                    NormalizedName = "CLIENT"
+                },
+                new IdentityRole
+                {
+                    Name = "Model",
+                    NormalizedName = "MODEL"
+                },
+                new IdentityRole
+                {
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                });
         }
     }
 }

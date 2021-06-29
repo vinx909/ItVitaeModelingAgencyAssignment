@@ -19,15 +19,10 @@ namespace ModelingAgency.Data.Service.Extensions
             services.AddScoped<IClientData, ClientData>();
             services.AddScoped<IEventData, EventData>();
             services.AddScoped<IModelData, ModelData>();
+
             services.AddScoped<ITypeEventData, TypeEventData>();
             services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>,
                 ApplicationUserClaimsPrincipleFactory>();
-
-            //Proberen services toe te voegen ERROR IDENTITY
-            //services.AddTransient<RolesConfiguration>();
-            //services.AddTransient<UserManager<IdentityUser>>();
-            //services.AddTransient<RoleManager<IdentityRole>>();
-            //services.AddTransient<IRoleStore<IdentityRole>>();
 
             return services;
         }

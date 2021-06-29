@@ -2,7 +2,7 @@
 
 namespace ModelingAgency.Data
 {
-    public class Client//TODO: probably inherite from a person class but related to identify framework
+    public class Client
     {
         public int Id { get; set; }
         //NAW-gegevens (Naam, adres, woonplaats)
@@ -10,7 +10,6 @@ namespace ModelingAgency.Data
         public int AddressNumber { get; set; }
         public string Postalcode { get; set; }
         public string City { get; set; }
-        //TODO: logo
         public int KVKNumber { get; set; }
         public int BTWNumber { get; set; }
         public Client EditOf { get; set; }

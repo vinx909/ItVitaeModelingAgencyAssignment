@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 namespace ModelingAgency.Data.Service.Identity
 {
     public class ApplicationUserClaimsPrincipleFactory : 
-        UserClaimsPrincipalFactory<IdentityUser>
+        UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
     {
         public ApplicationUserClaimsPrincipleFactory(
-            UserManager<IdentityUser> userManager, 
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             IOptions<IdentityOptions> options) 
-            : base (userManager, options)
+            : base (userManager, roleManager, options)
         {
 
         }

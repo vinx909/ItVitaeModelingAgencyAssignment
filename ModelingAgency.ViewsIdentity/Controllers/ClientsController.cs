@@ -16,6 +16,8 @@ namespace ModelingAgency.Views.Controllers
             this.eventData = eventData;
         }
 
+        //TODO: Zet alle authorize attributes op de juiste methods in de juiste controllers
+        //      Wie mag waar toegang to hebben?
         public IActionResult Index()
         {
             var model = repos.GetAll();
