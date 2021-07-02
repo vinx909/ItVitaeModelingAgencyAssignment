@@ -13,15 +13,17 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.Name)</th>
         <td>@Html.DisplayFor(m => Model.Model.Name)</td>
-        @if (secondModel && Model.Model.Name.Equals(Model.ModelUpdate.Name))
-        {
-            <td>@Html.DisplayFor(m => Model.ModelUpdate.Name)</td>
+        <td>
+            @if (secondModel && !Model.Model.Name.Equals(Model.ModelUpdate.Name))
+            {
+            @Html.DisplayFor(m => Model.ModelUpdate.Name)
         }
-    </tr>
+            </td>
+        </tr>
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.Password)</th>
         <td>@Html.DisplayFor(m => Model.Model.Password)</td>
-        @if (secondModel && Model.Model.Password.Equals(Model.ModelUpdate.Password))
+        @if (secondModel && !Model.Model.Password.Equals(Model.ModelUpdate.Password))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.Password)</td>
         }
@@ -29,7 +31,7 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.Role)</th>
         <td>@Html.DisplayFor(m => Model.Model.Role)</td>
-        @if (secondModel && Model.Model.Role.Equals(Model.ModelUpdate.Role))
+        @if (secondModel && !Model.Model.Role.Equals(Model.ModelUpdate.Role))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.Role)</td>
         }
@@ -37,7 +39,7 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.AddressNumber)</th>
         <td>@Html.DisplayFor(m => Model.Model.AddressNumber)</td>
-        @if (secondModel && Model.Model.AddressNumber.Equals(Model.ModelUpdate.AddressNumber))
+        @if (secondModel && !Model.Model.AddressNumber.Equals(Model.ModelUpdate.AddressNumber))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.AddressNumber)</td>
         }
@@ -45,7 +47,7 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.PostalCode)</th>
         <td>@Html.DisplayFor(m => Model.Model.PostalCode)</td>
-        @if (secondModel && Model.Model.PostalCode.Equals(Model.ModelUpdate.PostalCode))
+        @if (secondModel && !Model.Model.PostalCode.Equals(Model.ModelUpdate.PostalCode))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.PostalCode)</td>
         }
@@ -53,7 +55,7 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.City)</th>
         <td>@Html.DisplayFor(m => Model.Model.City)</td>
-        @if (secondModel && Model.Model.City.Equals(Model.ModelUpdate.City))
+        @if (secondModel && !Model.Model.City.Equals(Model.ModelUpdate.City))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.City)</td>
         }
@@ -61,7 +63,7 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.Age)</th>
         <td>@Html.DisplayFor(m => Model.Model.Age)</td>
-        @if (secondModel && Model.Model.Age.Equals(Model.ModelUpdate.Age))
+        @if (secondModel && !Model.Model.Age.Equals(Model.ModelUpdate.Age))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.Age)</td>
         }
@@ -69,7 +71,7 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.TelephoneNumber)</th>
         <td>@Html.DisplayFor(m => Model.Model.TelephoneNumber)</td>
-        @if (secondModel && Model.Model.TelephoneNumber.Equals(Model.ModelUpdate.TelephoneNumber))
+        @if (secondModel && !Model.Model.TelephoneNumber.Equals(Model.ModelUpdate.TelephoneNumber))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.TelephoneNumber)</td>
         }
@@ -77,7 +79,7 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.EMailAdress)</th>
         <td>@Html.DisplayFor(m => Model.Model.EMailAdress)</td>
-        @if (secondModel && Model.Model.EMailAdress.Equals(Model.ModelUpdate.EMailAdress))
+        @if (secondModel && !Model.Model.EMailAdress.Equals(Model.ModelUpdate.EMailAdress))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.EMailAdress)</td>
         }
@@ -85,11 +87,23 @@
     <tr>
         <th>@Html.DisplayNameFor(m => Model.Model.Description)</th>
         <td>@Html.DisplayFor(m => Model.Model.Description)</td>
-        @if (secondModel && Model.Model.Description.Equals(Model.ModelUpdate.Description))
+        @if (secondModel && !Model.Model.Description.Equals(Model.ModelUpdate.Description))
         {
             <td>@Html.DisplayFor(m => Model.ModelUpdate.Description)</td>
         }
     </tr>
 </table>
+<form method="post">
+    <div class="form-group">
+        <input type="submit"
+               value="aprove"
+               asp-page-handler="Aprove" asp-route-modelId="@Model.Model.Id"/>
+        <!--asp-route-sessioncount="20" -->
+        <input type="submit"
+               value="Discard"
+               asp-page-handler="Discard" asp-route-modelId="@Model.Model.Id"/>
+        <!-- asp-route-sessioncount="10" -->
+    </div>
+</form>
 
             }

@@ -44,6 +44,31 @@ namespace ModelingAgency.Web.Pages.Administrator
             }
         }
 
+        public IActionResult OnPostAprove(int modelId)
+        {
+            Data.Model modelToAprove = modelData.Get(modelId);
+            if (modelToAprove.EditOf != null)
+            {
+                modelToAprove.Id = modelToAprove.EditOf.Id;
+            }
+            modelToAprove.Aproved = true;
+            modelData.Edit(modelToAprove);
+            return RedirectToPage("./AdministratorOverview");
+        }
+        public IActionResult OnPostDiscard(int modelId)
+        {
+            Data.Model modelToDelete = modelData.Get(modelId);
+            if (modelToDelete.EditOf == null)
+            {
+                modelData.Delete(modelId);
+            }
+            else
+            {
+                modelData.Delete(modelToDelete.EditOf.Id);
+            }
+            return RedirectToPage("./AdministratorOverview");
+        }
+
         public class ModelModel
         {
             public ModelModel(Data.Model model)
