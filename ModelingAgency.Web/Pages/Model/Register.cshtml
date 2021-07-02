@@ -1,5 +1,5 @@
-﻿@model ModelingAgency.Data.Model
-
+﻿@page
+@model ModelingAgency.Web.Pages.Model.RegisterModel
 @{
     ViewData["Title"] = "Register";
 }
@@ -13,6 +13,28 @@
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                @if (!Model.NameAvailable)
+                {
+                    <span>name is already in use</span>
+                }
+                else if (Model.Check && string.IsNullOrWhiteSpace(Model.Name))
+                {
+                    <span>field must be filled in</span>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                @if (Model.Check && string.IsNullOrWhiteSpace(Model.Password))
+                {
+                    <span>field must be filled in</span>
+                }
+            </div>
+            <div class="form-group">
                 <label asp-for="AddressNumber" class="control-label"></label>
                 <input asp-for="AddressNumber" class="form-control" />
                 <span asp-validation-for="AddressNumber" class="text-danger"></span>
@@ -21,6 +43,10 @@
                 <label asp-for="PostalCode" class="control-label"></label>
                 <input asp-for="PostalCode" class="form-control" />
                 <span asp-validation-for="PostalCode" class="text-danger"></span>
+                @if (Model.Check && string.IsNullOrWhiteSpace(Model.PostalCode))
+                {
+                    <span>field must be filled in</span>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
@@ -41,37 +67,16 @@
                 <label asp-for="EMailAdress" class="control-label"></label>
                 <input asp-for="EMailAdress" class="form-control" />
                 <span asp-validation-for="EMailAdress" class="text-danger"></span>
+                @if (Model.Check && string.IsNullOrWhiteSpace(Model.EMailAdress))
+                {
+                    <span>field must be filled in</span>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Aproved" /> @Html.DisplayNameFor(model => model.Aproved)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

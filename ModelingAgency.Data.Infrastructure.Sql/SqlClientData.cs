@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelingAgency.Data.Service.Infrastructure.Sql
 {
-    class SqlClientData : IClientData
+    public class SqlClientData : IClientData
     {
         private readonly ModelingAgencyContext dbContext;
 

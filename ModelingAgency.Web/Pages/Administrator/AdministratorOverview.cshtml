@@ -1,0 +1,41 @@
+﻿@page
+@model ModelingAgency.Web.Pages.Administrator.AdministratorOverviewModel
+@{
+    ViewData["Title"] = "Administrator Overview";
+}
+<form asp-action="AdministratorOverview" method="get">
+    <div class="form-group">
+        <select asp-for="@Model.SelectedTableToView" asp-items="Html.GetEnumSelectList<AdministratorOverviewModel.TablesToView>()"></select>
+        <select asp-for="@Model.SelectedViewType" asp-items="Html.GetEnumSelectList<AdministratorOverviewModel.ViewType>()"></select>
+        <input type="submit" value="view" class="btn btn-primary" />
+    </div>
+    @if(Model.SelectedTableToView == AdministratorOverviewModel.TablesToView.model)
+            {
+                var dummyvalue = Model.Models.FirstOrDefault();
+                if (dummyvalue != null)
+                {
+                    <table class="table">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model=>dummyvalue.Id)</th>
+                            <th>@Html.DisplayNameFor(model=>dummyvalue.Name)</th>
+                            <th>@Html.DisplayNameFor(model=>dummyvalue.Aproved)</th>
+                        </tr>
+                        @foreach (var model in Model.Models)
+                        {
+                    <tr>
+                        <td>@Html.DisplayFor(m => model.Id)</td>
+                        <td>@Html.DisplayFor(m => model.Name)</td>
+                        <td>@Html.DisplayFor(m => model.Aproved)</td>
+                        <td>
+                            <a asp-page="/ModelDetail" asp-route-id="@(model.Id)">Details</a>
+                            @if (model.Aproved == false)
+                        {
+                            <a asp-page="/Administrator/ModelAproval" asp-route-id="@(model.Id)">aprove check</a>
+                        }
+                        </td>
+                    </tr>
+                        }
+                    </table>
+                }
+            }
+</form>

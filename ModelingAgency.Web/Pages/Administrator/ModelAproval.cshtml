@@ -1,0 +1,95 @@
+﻿@page
+@model ModelingAgency.Web.Pages.Administrator.ModelAprovalModel
+@{
+    ViewData["Title"] = "aprove of Model";
+}
+@if (Model.AlreadyAproved) {
+    <p>this model is already aproved. <a asp-page="/AdministratorOverview">go back</a></p>
+}
+            else
+            {
+    bool secondModel = Model.ModelUpdate != null;
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.Name)</th>
+        <td>@Html.DisplayFor(m => Model.Model.Name)</td>
+        @if (secondModel && Model.Model.Name.Equals(Model.ModelUpdate.Name))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.Name)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.Password)</th>
+        <td>@Html.DisplayFor(m => Model.Model.Password)</td>
+        @if (secondModel && Model.Model.Password.Equals(Model.ModelUpdate.Password))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.Password)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.Role)</th>
+        <td>@Html.DisplayFor(m => Model.Model.Role)</td>
+        @if (secondModel && Model.Model.Role.Equals(Model.ModelUpdate.Role))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.Role)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.AddressNumber)</th>
+        <td>@Html.DisplayFor(m => Model.Model.AddressNumber)</td>
+        @if (secondModel && Model.Model.AddressNumber.Equals(Model.ModelUpdate.AddressNumber))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.AddressNumber)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.PostalCode)</th>
+        <td>@Html.DisplayFor(m => Model.Model.PostalCode)</td>
+        @if (secondModel && Model.Model.PostalCode.Equals(Model.ModelUpdate.PostalCode))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.PostalCode)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.City)</th>
+        <td>@Html.DisplayFor(m => Model.Model.City)</td>
+        @if (secondModel && Model.Model.City.Equals(Model.ModelUpdate.City))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.City)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.Age)</th>
+        <td>@Html.DisplayFor(m => Model.Model.Age)</td>
+        @if (secondModel && Model.Model.Age.Equals(Model.ModelUpdate.Age))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.Age)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.TelephoneNumber)</th>
+        <td>@Html.DisplayFor(m => Model.Model.TelephoneNumber)</td>
+        @if (secondModel && Model.Model.TelephoneNumber.Equals(Model.ModelUpdate.TelephoneNumber))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.TelephoneNumber)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.EMailAdress)</th>
+        <td>@Html.DisplayFor(m => Model.Model.EMailAdress)</td>
+        @if (secondModel && Model.Model.EMailAdress.Equals(Model.ModelUpdate.EMailAdress))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.EMailAdress)</td>
+        }
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(m => Model.Model.Description)</th>
+        <td>@Html.DisplayFor(m => Model.Model.Description)</td>
+        @if (secondModel && Model.Model.Description.Equals(Model.ModelUpdate.Description))
+        {
+            <td>@Html.DisplayFor(m => Model.ModelUpdate.Description)</td>
+        }
+    </tr>
+</table>
+
+            }

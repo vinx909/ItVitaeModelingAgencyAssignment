@@ -14,5 +14,6 @@ namespace ModelingAgency.Data.Service
         public void Create(Person personToAdd);
         public void Edit(Person personToUpdate);
         public void Delete(int personToDeleteId);
+        public bool NameFree(string name);
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelingAgency.Data.Service.Infrastructure.Sql
 {
-    class SqlEventData : IEventData
+    public class SqlEventData : IEventData
     {
         private readonly ModelingAgencyContext dbContext;
 

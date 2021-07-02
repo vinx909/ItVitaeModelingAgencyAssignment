@@ -47,5 +47,10 @@ namespace ModelingAgency.Data.Service.Infrastructure.Sql
         {
             return dbContext.People;
         }
+
+        public bool NameFree(string name)
+        {
+            return dbContext.People.Where(p=>p.Name.Equals(name)).FirstOrDefault()==null;
+        }
     }
 }

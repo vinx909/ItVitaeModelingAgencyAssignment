@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ModelingAgency.Data.Service;
+using ModelingAgency.Data.Service.Infrastructure.Sql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,15 @@ namespace ModelingAgency.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ModelingAgencyContext, ModelingAgencyContext>();
+            services.AddScoped<IClientData, SqlClientData>();
+            services.AddScoped<IEventData, SqlEventData>();
+            services.AddScoped<IEventTypeData, SqlEventTypeData>();
+            services.AddScoped<IImageData, SqlImageData>();
+            services.AddScoped<IModelData, SqlModelData>();
+            services.AddScoped<IPersonData, SqlPersonData>();
+            //services.BuildServiceProvider();
+
             services.AddRazorPages();
         }
 
